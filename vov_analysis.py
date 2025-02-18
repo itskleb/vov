@@ -61,10 +61,10 @@ with st.sidebar:
 
 #if prgm != None:
 topic = st.multiselect('Select Question Topic',df.columns.tolist(),None)
-temp = df[df['program'].isin(prgm) & df['length'].isin(lgth) & df['youth'].isin(youth) & df['district_vol'].isin(dist) & df['eagle'].isin(eagle)]
+temp2 = df[df['program'].isin(prgm) & df['length'].isin(lgth) & df['youth'].isin(youth) & df['district_vol'].isin(dist) & df['eagle'].isin(eagle)]
 for t in topic:
   if t in ['de_purp','camp','pain']:
-    st.write(rankers(temp,t))
+    st.write(rankers(temp2,t))
   else:
     temp = df[df['program'].isin(prgm) & df['length'].isin(lgth) & df['youth'].isin(youth) & df['district_vol'].isin(dist) & df['eagle'].isin(eagle)].groupby(by=t).count()['sub_date'].sort_values(ascending=False)
     chart = px.bar(temp)

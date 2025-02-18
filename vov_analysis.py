@@ -49,7 +49,7 @@ def rankers(df,t):
               except:
                   pass
   
-  return(pd.Series(ret_dict).sort_values(ascending=True)))
+  return(pd.Series(ret_dict).sort_values(ascending=True))
 
 with st.sidebar:
   prgm = st.multiselect('Program',df.program.unique().tolist(),df.program.unique().tolist())

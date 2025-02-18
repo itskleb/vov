@@ -67,9 +67,9 @@ for t in topic:
     st.write(f"Total Respondents: {len(temp2)}. That is {round((len(temp2)/len(df))*100,2)}% of total.")
     st.write(rankers(temp2,t))
   else:
-    temp = temp2.groupby(by=t).count()['sub_date'].sort_values(ascending=False)
+    temp = temp2.groupby(by=[t,'program']).count()['sub_date'].sort_values(ascending=False)
     st.write(f"Total Respondents: {len(temp2)}. That is {round((len(temp2)/len(df))*100,2)}% of total.")
-    chart = px.bar(temp,title=t,labels={'y':''},text_auto = True,color='program')
+    chart = px.bar(temp.reset_index(),title=t,labels={'y':''},text_auto = True,color='program')
     chart.update_layout(showlegend=False)
     st.plotly_chart(chart)
     #st.bar_chart(data=temp,  horizontal=False)

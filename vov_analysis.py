@@ -56,10 +56,10 @@ def rankers(df,t):
 with st.sidebar:
   prgm = st.multiselect('Program',df.program.unique().tolist(),df.program.unique().tolist())
   lgth = st.multiselect('Tenure',df.length.unique().tolist(),df.length.unique().tolist())
-  youth = st.multiselect('Youth in Program',['YES','NO',np.nan],['YES','NO',np.nan])
+  youth = st.multiselect('Youth in Program',df.youth.unique().tolist(),df.youth.unique().tolist())
   dist = st.multiselect('District Volunteer',df.district_vol.unique().tolist(),df.district_vol.unique().tolist())
-  eagle = st.multiselect('Eagle Scout',df.eagle.unique().tolist(),None)
-  scoutAsYouth = st.multiselect('Scout as Youth',df.scout_as_youth.unique().tolist(),None)
+  eagle = st.multiselect('Eagle Scout',df.eagle.unique().tolist(),df.eagle.unique().tolist())
+  scoutAsYouth = st.multiselect('Scout as Youth',df.scout_as_youth.unique().tolist(),df.scout_as_youth.unique().tolist())
 
 #if prgm != None:
 topic = st.multiselect('Select Question Topic',df.columns.tolist(),None)

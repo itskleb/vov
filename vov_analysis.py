@@ -38,7 +38,7 @@ def rankers(df,t):
     ret_dict = dict(zip(tops,[0,0,0,0,0]))
     
   for i in df.itertuples():
-      data = i.t.split('\n')
+      data = i[t].split('\n')
       for x in data:
           for y in purp:
               try:
@@ -66,5 +66,5 @@ for t in topic:
   if t in ['de_purp','camp','pain']:
     st.write(rankers(temp,t))
   else:
-    temp = df[df['program'].isin(prgm) & df['length'].isin(lgth) & df['youth'].isin(youth) & df['district_vol'].isin(dist) & df['eagle'].isin(eagle)].groupby(by=t).count()['sub_date']
+    temp = ddf[df['program'].isin(prgm) & df['length'].isin(lgth) & df['youth'].isin(youth) & df['district_vol'].isin(dist) & df['eagle'].isin(eagle)].groupby(by=t).count()['sub_date']
     st.bar_chart(data=temp,  horizontal=True, )

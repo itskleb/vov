@@ -32,10 +32,10 @@ issue = ['Access to the main office',
 'Lack of activity calendar']
 
 with st.sidebar:
-  prgm = st.multiselect('Program',df.program.unique().tolist(),None)
-  lgth = st.multiselect('Tenure',df.length.unique().tolist(),None)
+  prgm = st.multiselect('Program',df.program.unique().tolist(),df.program.unique().tolist())
+  lgth = st.multiselect('Tenure',df.length.unique().tolist(),df.program.unique().tolist())
   youth = st.selectbox('Youth in Program',['YES','NO'],None)
 
 #if prgm != None:
-temp = df[df['program'].isin(prgm)].groupby(by='motive').count()['sub_date']
+temp = df[df['program'].isin(prgm) and df['length'].isin(lgth)].groupby(by='motive').count()['sub_date']
 st.bar_chart(data=temp)

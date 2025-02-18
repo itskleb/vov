@@ -66,5 +66,5 @@ for t in topic:
   if t in ['de_purp','camp','pain']:
     st.write(rankers(temp,t))
   else:
-    temp = df[df['program'].isin(prgm) & df['length'].isin(lgth) & df['youth'].isin(youth) & df['district_vol'].isin(dist) & df['eagle'].isin(eagle)].groupby(by=t).count()['sub_date'].sort_values(ascending=True)
-    st.bar_chart(data=temp,  horizontal=True, )
+    temp = df[df['program'].isin(prgm) & df['length'].isin(lgth) & df['youth'].isin(youth) & df['district_vol'].isin(dist) & df['eagle'].isin(eagle)].groupby(by=t).count()['sub_date'].sort_values(ascending=False)
+    st.bar_chart(data=temp,  horizontal=False)

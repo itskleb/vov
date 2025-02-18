@@ -35,6 +35,6 @@ prgm = st.multiselect('Program',df.program.unique().tolist(),None)
 lgth = st.multiselect('Tenure',df.length.unique().tolist(),None)
 youth = st.selectbox('Youth in Program',['YES','NO'],None)
 
-temp = df[df['program']==prgm]
-
-st.bar_chart(data=temp,x='motive')
+if prgm != None:
+  temp = df[df['program']==prgm]
+  st.bar_chart(data=temp,x='motive')

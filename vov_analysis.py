@@ -37,5 +37,5 @@ with st.sidebar:
   youth = st.selectbox('Youth in Program',['YES','NO'],None)
 
 #if prgm != None:
-temp = df[df['program'].isin(prgm) and df['length'].isin(lgth)].groupby(by='motive').count()['sub_date']
+temp = df[df['program'].isin(prgm) & df['length'].isin(lgth)].groupby(by='motive').count()['sub_date']
 st.bar_chart(data=temp)

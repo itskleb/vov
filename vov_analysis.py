@@ -14,22 +14,42 @@ troops = df[df['program'] == 'Troop']
 packs = df[df['program'] == 'Pack']
 others = df[~df['program'].isin(['Pack','Troop'])]
 
-purp = ['Technical Assistance (My.Scouting guides, password assistance, reservation help, etc.)',
-'Program Delivery (Planning program, attending activities, etc.)',
-'Membership Recruitment and New Unit growth',
-'Unit issue reconciliation']
+def rankers(df,t):
 
-camp = ['Affordability',
-'Camp Facilities',
-'Accessibility and distance from NYC',
-'Staffing Quality',
-'Program offerings']
-
-issue = ['Access to the main office',
-'Access to correct staff',
-'Helpfulness of staff',
-'Cost of GNYC activities (cost of registration is controlled by national)',
-'Lack of activity calendar']
+  if t = 'de_purp':
+    tops = ['Technical Assistance (My.Scouting guides, password assistance, reservation help, etc.)',
+    'Program Delivery (Planning program, attending activities, etc.)',
+    'Membership Recruitment and New Unit growth',
+    'Unit issue reconciliation']
+    ret_dict = dict(zip(tops,[0,0,0,0]))
+  elif t = 'camp':
+    tops = ['Affordability',
+    'Camp Facilities',
+    'Accessibility and distance from NYC',
+    'Staffing Quality',
+    'Program offerings']
+    ret_dict = dict(zip(tops,[0,0,0,0,0]))
+  else:
+    tops = ['Access to the main office',
+    'Access to correct staff',
+    'Helpfulness of staff',
+    'Cost of GNYC activities (cost of registration is controlled by national)',
+    'Lack of activity calendar']
+    ret_dict = dict(zip(tops,[0,0,0,0,0]))
+    
+  for i in df.itertuples():
+      data = i.t.split('\n')
+      for x in data:
+          for y in purp:
+              try:
+                  s_score = int(x.split(y)[0].replace(" ",''))
+                  score = ret_dict[y]+s_score
+                  ret_dict.update({y:score})
+                  break
+              except:
+                  pass
+  
+  return(pd.Series(ret_dict))
 
 with st.sidebar:
   prgm = st.multiselect('Program',df.program.unique().tolist(),df.program.unique().tolist())
@@ -41,7 +61,10 @@ with st.sidebar:
 
 #if prgm != None:
 topic = st.multiselect('Select Question Topic',df.columns.tolist(),None)
-for i in topic:
-  temp = df[df['program'].isin(prgm) & df['length'].isin(lgth) & df['youth'].isin(youth) & df['district_vol'].isin(dist) & df['eagle'].isin(eagle)].groupby(by=i).count()['sub_date']
-
-  st.bar_chart(data=temp)
+temp = df[df['program'].isin(prgm) & df['length'].isin(lgth) & df['youth'].isin(youth) & df['district_vol'].isin(dist) & df['eagle'].isin(eagle)]
+for t in topic:
+  if t in ['de_purp','camp','pain']:
+    st.write(rankers(temp,t)
+  else:
+    temp = df[df['program'].isin(prgm) & df['length'].isin(lgth) & df['youth'].isin(youth) & df['district_vol'].isin(dist) & df['eagle'].isin(eagle)].groupby(by=t).count()['sub_date']
+    st.bar_chart(data=temp,  horizontal=True, )

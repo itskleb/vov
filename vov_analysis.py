@@ -68,5 +68,6 @@ for t in topic:
   else:
     temp = df[df['program'].isin(prgm) & df['length'].isin(lgth) & df['youth'].isin(youth) & df['district_vol'].isin(dist) & df['eagle'].isin(eagle)].groupby(by=t).count()['sub_date'].sort_values(ascending=False)
     chart = px.bar(temp)
-    st.plotly_chart(chart)
-    st.bar_chart(data=temp,  horizontal=False)
+    chart.update_layout(showlegend=False)
+    st.plotly_chart(chart,y_label='')
+    #st.bar_chart(data=temp,  horizontal=False)

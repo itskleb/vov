@@ -40,5 +40,8 @@ with st.sidebar:
   scoutAsYouth = st.multiselect('Scout as Youth',df.scout_as_youth.unique().tolist(),None)
 
 #if prgm != None:
-temp = df[df['program'].isin(prgm) & df['length'].isin(lgth) & df['youth'].isin(youth) & df['district_vol'].isin(dist) & df['eagle'].isin(eagle)].groupby(by='motive').count()['sub_date']
-st.bar_chart(data=temp)
+topic = st.multiselect('Select Question Topic',df.columns.tolist(),None)
+for i in topic:
+  temp = df[df['program'].isin(prgm) & df['length'].isin(lgth) & df['youth'].isin(youth) & df['district_vol'].isin(dist) & df['eagle'].isin(eagle)].groupby(by=i).count()['sub_date']
+
+  st.bar_chart(data=temp)

@@ -37,7 +37,7 @@ with st.sidebar:
   youth = st.multiselect('Youth in Program',['YES','NO',np.nan],['YES','NO',np.nan])
   dist = st.multiselect('District Volunteer',df.district_vol.unique().tolist(),df.district_vol.unique().tolist())
   eagle = st.multiselect('Eagle Scout',df.eagle.unique().tolist(),None)
-  scoutAsYouth = st.multiselect(df.scout_as_youth.unique().tolist(),None)
+  scoutAsYouth = st.multiselect('Scout as Youth',,df.scout_as_youth.unique().tolist(),None)
 
 #if prgm != None:
 temp = df[df['program'].isin(prgm) & df['length'].isin(lgth) & df['youth'].isin(youth) & df['district_vol'].isin(dist) & df['eagle'].isin(eagle)].groupby(by='motive').count()['sub_date']

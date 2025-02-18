@@ -68,8 +68,8 @@ for t in topic:
   if t in ['de_purp','camp','pain']:
     st.write(f"Total Respondents: {len(temp2)}. That is {round((len(temp2)/len(df))*100,2)}% of total.")
     st.write(rankers(temp2,t))
-    plt.pie(rankers(temp2,t))
-    st.pyplot_chart(charty)
+    charty = plt.pie(rankers(temp2,t))
+    st.pyplot(charty)
   else:
     temp = temp2.groupby(by=[t,'program']).count()['sub_date'].sort_values(ascending=False)
     st.write(f"Total Respondents: {len(temp2)}. That is {round((len(temp2)/len(df))*100,2)}% of total.")

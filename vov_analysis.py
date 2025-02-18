@@ -66,9 +66,10 @@ topic = st.multiselect('Select Question Topic',df.columns.tolist(),None)
 temp2 = df[df['program'].isin(prgm) & df['length'].isin(lgth) & df['youth'].isin(youth) & df['district_vol'].isin(dist) & df['eagle'].isin(eagle) & df['scout_as_youth'].isin(scoutAsYouth)]
 for t in topic:
   if t in ['de_purp','camp','pain']:
-    st.write(f"Total Respondents: <strong>{len(temp2)}</strong>. That is {round((len(temp2)/len(df))*100,2)}% of total.")
+    st.write(f"Total Respondents: {len(temp2)}. That is {round((len(temp2)/len(df))*100,2)}% of total.")
     st.write(rankers(temp2,t))
-    st.plotly_chart(rankers(temp2,t))
+    plt.pie(rankers(temp2,t))
+    st.pyplot_chart(charty)
   else:
     temp = temp2.groupby(by=[t,'program']).count()['sub_date'].sort_values(ascending=False)
     st.write(f"Total Respondents: {len(temp2)}. That is {round((len(temp2)/len(df))*100,2)}% of total.")

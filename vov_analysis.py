@@ -33,7 +33,7 @@ issue = ['Access to the main office',
 
 with st.sidebar:
   prgm = st.multiselect('Program',df.program.unique().tolist(),df.program.unique().tolist())
-  lgth = st.multiselect('Tenure',df.length.unique().tolist(),df.program.unique().tolist())
+  lgth = st.multiselect('Tenure',df.length.unique().tolist(),df.length.unique().tolist())
   youth = st.selectbox('Youth in Program',['YES','NO'],None)
 
 #if prgm != None:

@@ -64,11 +64,11 @@ topic = st.multiselect('Select Question Topic',df.columns.tolist(),None)
 temp2 = df[df['program'].isin(prgm) & df['length'].isin(lgth) & df['youth'].isin(youth) & df['district_vol'].isin(dist) & df['eagle'].isin(eagle) & df['scout_as_youth'].isin(scoutAsYouth)]
 for t in topic:
   if t in ['de_purp','camp','pain']:
-    st.write(f"Total Respondents: {len(temp2)}")
+    st.write(f"Total Respondents: {len(temp2)}. That is {(round(len(temp2)/len(df))*100,2)}% of total.")
     st.write(rankers(temp2,t))
   else:
     temp = temp2.groupby(by=t).count()['sub_date'].sort_values(ascending=False)
-    st.write(f"Total Respondents: {len(temp2)}. {round(len(temp2)/len(df),2)}% of total.")
+    st.write(f"Total Respondents: {len(temp2)}. That is {(round(len(temp2)/len(df))*100,2)}% of total.")
     chart = px.bar(temp,title=t,labels={'y':''},text_auto = True)
     chart.update_layout(showlegend=False)
     st.plotly_chart(chart)

@@ -16,13 +16,13 @@ others = df[~df['program'].isin(['Pack','Troop'])]
 
 def rankers(df,t):
 
-  if t = 'de_purp':
+  if t == 'de_purp':
     tops = ['Technical Assistance (My.Scouting guides, password assistance, reservation help, etc.)',
     'Program Delivery (Planning program, attending activities, etc.)',
     'Membership Recruitment and New Unit growth',
     'Unit issue reconciliation']
     ret_dict = dict(zip(tops,[0,0,0,0]))
-  elif t = 'camp':
+  elif t == 'camp':
     tops = ['Affordability',
     'Camp Facilities',
     'Accessibility and distance from NYC',

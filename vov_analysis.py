@@ -37,4 +37,4 @@ youth = st.selectbox('Youth in Program',['YES','NO'],None)
 
 temp = df[df['program']==prgm]
 
-st.bar_chart(data=temp['motive'])
+st.bar_chart(data=temp,x='motive')

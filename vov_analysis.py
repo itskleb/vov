@@ -35,7 +35,7 @@ with st.sidebar:
   prgm = st.multiselect('Program',df.program.unique().tolist(),df.program.unique().tolist())
   lgth = st.multiselect('Tenure',df.length.unique().tolist(),df.length.unique().tolist())
   youth = st.multiselect('Youth in Program',['YES','NO',np.nan],['YES','NO',np.nan])
-  dist = st.multiselect('District Volunteer',df.district_vol.unique().tolist().df.district_vol.unique().tolist())
+  dist = st.multiselect('District Volunteer',df.district_vol.unique().tolist(),df.district_vol.unique().tolist())
   eagle = st.multiselect('Eagle Scout',df.eagle.unique().tolist(),None)
   scoutAsYouth = st.multiselect(df.scout_as_youth.unique().tolist(),None)
 

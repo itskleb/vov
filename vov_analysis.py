@@ -40,7 +40,7 @@ def rankers(df,t):
   for index, row in df.iterrows():
       data = row[t].split('\n')
       for x in data:
-          for y in purp:
+          for y in tops:
               try:
                   s_score = int(x.split(y)[0].replace(" ",''))
                   score = ret_dict[y]+s_score

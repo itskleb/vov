@@ -37,7 +37,7 @@ def rankers(df,t):
     'Lack of activity calendar']
     ret_dict = dict(zip(tops,[0,0,0,0,0]))
     
-  for row in df.iterrows(index=False):
+  for index, row in df.iterrows():
       data = row[t].split('\n')
       for x in data:
           for y in purp:

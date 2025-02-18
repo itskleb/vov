@@ -69,7 +69,7 @@ for t in topic:
     st.write(f"Total Respondents: {len(temp2)}. That is {round((len(temp2)/len(df))*100,2)}% of total.")
     st.write(rankers(temp2,t))
     charty = px.bar(rankers(temp2,t))
-    st.plotly_chart(charty)
+    st.plotly_chart(charty,text_auto = True)
   else:
     temp = temp2.groupby(by=[t,'program']).count()['sub_date'].sort_values(ascending=False)
     st.write(f"Total Respondents: {len(temp2)}. That is {round((len(temp2)/len(df))*100,2)}% of total.")

@@ -34,8 +34,11 @@ issue = ['Access to the main office',
 with st.sidebar:
   prgm = st.multiselect('Program',df.program.unique().tolist(),df.program.unique().tolist())
   lgth = st.multiselect('Tenure',df.length.unique().tolist(),df.length.unique().tolist())
-  youth = st.selectbox('Youth in Program',['YES','NO'],None)
+  youth = st.multiselect('Youth in Program',['YES','NO',np.nan],['YES','NO',np.nan])
+  dist = st.multiselect('District Volunteer',df.district.unique().tolist().df.district.unique().tolist())
+  eagle = st.multiselect('Eagle Scout',df.eagle.unique().tolist(),None)
+  scoutAsYouth = st.multiselect(df.scout_as_youth.unique().tolist(),None)
 
 #if prgm != None:
-temp = df[df['program'].isin(prgm) & df['length'].isin(lgth)].groupby(by='motive').count()['sub_date']
+temp = df[df['program'].isin(prgm) & df['length'].isin(lgth) & df['youth'].isin(youth) & df['district'].isin(dist) & df['eagle'].isin(eagle)].groupby(by='motive').count()['sub_date']
 st.bar_chart(data=temp)

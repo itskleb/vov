@@ -30,11 +30,12 @@ issue = ['Access to the main office',
 'Helpfulness of staff',
 'Cost of GNYC activities (cost of registration is controlled by national)',
 'Lack of activity calendar']
+
 with st.sidebar:
   prgm = st.multiselect('Program',df.program.unique().tolist(),None)
   lgth = st.multiselect('Tenure',df.length.unique().tolist(),None)
   youth = st.selectbox('Youth in Program',['YES','NO'],None)
 
-if prgm != None:
-  temp = df[df['program'].isin(prgm)].groupby(by='motive').count()['sub_date']
-  st.bar_chart(data=temp)
+#if prgm != None:
+temp = df[df['program'].isin(prgm)].groupby(by='motive').count()['sub_date']
+st.bar_chart(data=temp)

@@ -74,7 +74,9 @@ for t in topic:
   else:
     temp = temp2.groupby(by=[t,'program']).count()['sub_date'].sort_values(ascending=False)
     st.write(f"Total Respondents: {len(temp2)}. That is {round((len(temp2)/len(df))*100,2)}% of total.")
-    st.write(temp2.groupby(by=t).count()['sub_date'].sort_values())
+    write = pd.DataFrame(temp2.groupby(by=t).count()['sub_date'].sort_values(ascending=False))
+    write['percent'] = str(round(write['sub_date']/write['sub_date'].sum(),2))+'%'
+    st.write(write)
     chart = px.bar(temp.reset_index(),x=t,y='sub_date',title=t,labels={'sub_date':'responses'},text_auto = True,color='program')
     #chart.update_layout(showlegend=False)
     st.plotly_chart(chart)

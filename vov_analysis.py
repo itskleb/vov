@@ -76,7 +76,7 @@ for t in topic:
     st.write(f"Total Respondents: {len(temp2)}. That is {round((len(temp2)/len(df))*100,2)}% of total.")
     write = pd.DataFrame(temp2.groupby(by=t).count()['sub_date'].sort_values(ascending=False))
     tot = write['sub_date'].sum()
-    write['percent'] = write['sub_date']/tot
+    write['percent'] = (write['sub_date']/tot)*100
     st.write(write)
     chart = px.bar(temp.reset_index(),x=t,y='sub_date',title=t,labels={'sub_date':'responses'},text_auto = True,color='program')
     #chart.update_layout(showlegend=False)
